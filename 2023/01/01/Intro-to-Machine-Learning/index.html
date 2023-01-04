@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"murphyuu.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Intro to Machine Learning 1. How Models Work Introduction  Improving the Decision Tree You can capture more factors using a tree that has more “splits.” These are called “deeper” trees.  The point at">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intro to Machine Learning">
+<meta property="og:url" content="https://murphyuu.github.io/2023/01/01/Intro-to-Machine-Learning/index.html">
+<meta property="og:site_name" content="MurphyUU&#39;s Blog">
+<meta property="og:description" content="Intro to Machine Learning 1. How Models Work Introduction  Improving the Decision Tree You can capture more factors using a tree that has more “splits.” These are called “deeper” trees.  The point at">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://i.imgur.com/7tsb5b1.png">
+<meta property="og:image" content="http://i.imgur.com/R3ywQsR.png">
+<meta property="og:image" content="http://i.imgur.com/AXSEOfI.png">
+<meta property="article:published_time" content="2023-01-01T04:12:05.000Z">
+<meta property="article:modified_time" content="2023-01-04T09:13:47.197Z">
+<meta property="article:author" content="MurphyUU">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i.imgur.com/7tsb5b1.png">
+
+
+<link rel="canonical" href="https://murphyuu.github.io/2023/01/01/Intro-to-Machine-Learning/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://murphyuu.github.io/2023/01/01/Intro-to-Machine-Learning/","path":"2023/01/01/Intro-to-Machine-Learning/","title":"Intro to Machine Learning"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Intro to Machine Learning | MurphyUU's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">MurphyUU's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">about math&cs</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Intro to Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-How-Models-Work"><span class="nav-number">1.1.</span> <span class="nav-text">1. How Models Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-the-Decision-Tree"><span class="nav-number">1.1.2.</span> <span class="nav-text">Improving the Decision Tree</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Basic-Data-Exploration"><span class="nav-number">1.2.</span> <span class="nav-text">2. Basic Data Exploration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Pandas-to-Get-Familiar-With-Your-Data"><span class="nav-number">1.2.1.</span> <span class="nav-text">Using Pandas to Get Familiar With Your Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpreting-Data-Description"><span class="nav-number">1.2.2.</span> <span class="nav-text">Interpreting Data Description</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Your-First-Machine-Learning-Model"><span class="nav-number">1.3.</span> <span class="nav-text">3. Your First Machine Learning Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Selecting-Data-for-Modeling"><span class="nav-number">1.3.1.</span> <span class="nav-text">Selecting Data for Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Selecting-The-Prediction-Target"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Selecting The Prediction Target</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-%E2%80%9CFeatures%E2%80%9D"><span class="nav-number">1.3.2.</span> <span class="nav-text">Choosing “Features”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-Your-Model"><span class="nav-number">1.3.3.</span> <span class="nav-text">Building Your Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Model-Validation"><span class="nav-number">1.4.</span> <span class="nav-text">4. Model Validation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Model-Validation"><span class="nav-number">1.4.1.</span> <span class="nav-text">What is Model Validation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Problem-with-%E2%80%9CIn-Sample%E2%80%9D-Scores"><span class="nav-number">1.4.2.</span> <span class="nav-text">The Problem with “In-Sample” Scores</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Underfitting-and-Overfitting"><span class="nav-number">1.5.</span> <span class="nav-text">Underfitting and Overfitting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimenting-With-Different-Models"><span class="nav-number">1.5.1.</span> <span class="nav-text">Experimenting With Different Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.5.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Random-Forests"><span class="nav-number">1.6.</span> <span class="nav-text">6. Random Forests</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MurphyUU"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MurphyUU</p>
+  <div class="site-description" itemprop="description"><font color="#FFFFFF">"Welcome to MurphyUU's Blog"</font></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MurphyUU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MurphyUU" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Ouniqwq2214@outlook.com" title="E-Mail → mailto:Ouniqwq2214@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/20894311/murphyuu" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;20894311&#x2F;murphyuu" rel="noopener me" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://murphyuu.github.io/2023/01/01/Intro-to-Machine-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MurphyUU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MurphyUU's Blog">
+      <meta itemprop="description" content="<font color="#FFFFFF">"Welcome to MurphyUU's Blog"</font>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Intro to Machine Learning | MurphyUU's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Intro to Machine Learning
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-01 12:12:05" itemprop="dateCreated datePublished" datetime="2023-01-01T12:12:05+08:00">2023-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-04 17:13:47" itemprop="dateModified" datetime="2023-01-04T17:13:47+08:00">2023-01-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Kaggle/" itemprop="url" rel="index"><span itemprop="name">Kaggle</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>Intro to Machine Learning</h1>
+<h2 id="1-How-Models-Work">1. How Models Work</h2>
+<h3 id="Introduction">Introduction</h3>
+<p><img src="http://i.imgur.com/7tsb5b1.png" alt="First Decision Trees"></p>
+<h3 id="Improving-the-Decision-Tree">Improving the Decision Tree</h3>
+<p>You can capture more factors using a tree that has more “splits.” These are called “deeper” trees.<br>
+<img src="http://i.imgur.com/R3ywQsR.png" alt="Depth 2 Tree"><br>
+The point at the bottom where we make a prediction is called a <strong>leaf</strong>.</p>
+<span id="more"></span>
+<h2 id="2-Basic-Data-Exploration">2. Basic Data Exploration</h2>
+<h3 id="Using-Pandas-to-Get-Familiar-With-Your-Data">Using Pandas to Get Familiar With Your Data</h3>
+<p>Pandas is the primary tool data scientists use for exploring and manipulating data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<p>We load and explore the data with the following commands:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># save filepath to variable for easier access</span></span><br><span class="line">melbourne_file_path = <span class="string">&#x27;../input/melbourne-housing-snapshot/melb_data.csv&#x27;</span></span><br><span class="line"><span class="comment"># read the data and store data in DataFrame titled melbourne_data</span></span><br><span class="line">melbourne_data = pd.read_csv(melbourne_file_path) </span><br><span class="line"><span class="comment"># print a summary of the data in Melbourne data</span></span><br><span class="line">melbourne_data.describe()</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Rooms</th>
+<th style="text-align:left">Price</th>
+<th style="text-align:left">Distance</th>
+<th style="text-align:left">Postcode</th>
+<th style="text-align:left">Bedroom2</th>
+<th style="text-align:left">Bathroom</th>
+<th style="text-align:left">Car</th>
+<th style="text-align:left">Landsize</th>
+<th style="text-align:left">BuildingArea</th>
+<th style="text-align:left">YearBuilt</th>
+<th style="text-align:left">Lattitude</th>
+<th style="text-align:left">Longtitude</th>
+<th style="text-align:left">Propertycount</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">1.358000e+04</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">13518.000000</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">7130.000000</td>
+<td style="text-align:left">8205.000000</td>
+<td style="text-align:left">13580.000000</td>
+<td style="text-align:left">13580.000000</td>
+<td>13580.000000</td>
+</tr>
+<tr>
+<td style="text-align:left">mean</td>
+<td style="text-align:left">2.937997</td>
+<td style="text-align:left">1.075684e+06</td>
+<td style="text-align:left">10.137776</td>
+<td style="text-align:left">3105.301915</td>
+<td style="text-align:left">2.914728</td>
+<td style="text-align:left">1.534242</td>
+<td style="text-align:left">1.610075</td>
+<td style="text-align:left">558.416127</td>
+<td style="text-align:left">151.967650</td>
+<td style="text-align:left">1964.684217</td>
+<td style="text-align:left">-37.809203</td>
+<td style="text-align:left">144.995216</td>
+<td>7454.417378</td>
+</tr>
+<tr>
+<td style="text-align:left">std</td>
+<td style="text-align:left">0.955748</td>
+<td style="text-align:left">6.393107e+05</td>
+<td style="text-align:left">5.868725</td>
+<td style="text-align:left">90.676964</td>
+<td style="text-align:left">0.965921</td>
+<td style="text-align:left">0.691712</td>
+<td style="text-align:left">0.962634</td>
+<td style="text-align:left">3990.669241</td>
+<td style="text-align:left">541.014538</td>
+<td style="text-align:left">37.273762</td>
+<td style="text-align:left">0.079260</td>
+<td style="text-align:left">0.103916</td>
+<td>4378.581772</td>
+</tr>
+<tr>
+<td style="text-align:left">min</td>
+<td style="text-align:left">1.000000</td>
+<td style="text-align:left">8.500000e+04</td>
+<td style="text-align:left">0.000000</td>
+<td style="text-align:left">3000.000000</td>
+<td style="text-align:left">0.000000</td>
+<td style="text-align:left">0.000000</td>
+<td style="text-align:left">0.000000</td>
+<td style="text-align:left">0.000000</td>
+<td style="text-align:left">0.000000</td>
+<td style="text-align:left">1196.000000</td>
+<td style="text-align:left">-38.182550</td>
+<td style="text-align:left">144.431810</td>
+<td>249.000000</td>
+</tr>
+<tr>
+<td style="text-align:left">25%</td>
+<td style="text-align:left">2.000000</td>
+<td style="text-align:left">6.500000e+05</td>
+<td style="text-align:left">6.100000</td>
+<td style="text-align:left">3044.000000</td>
+<td style="text-align:left">2.000000</td>
+<td style="text-align:left">1.000000</td>
+<td style="text-align:left">1.000000</td>
+<td style="text-align:left">177.000000</td>
+<td style="text-align:left">93.000000</td>
+<td style="text-align:left">1940.000000</td>
+<td style="text-align:left">-37.856822</td>
+<td style="text-align:left">144.929600</td>
+<td>4380.000000</td>
+</tr>
+<tr>
+<td style="text-align:left">50%</td>
+<td style="text-align:left">3.000000</td>
+<td style="text-align:left">9.030000e+05</td>
+<td style="text-align:left">9.200000</td>
+<td style="text-align:left">3084.000000</td>
+<td style="text-align:left">3.000000</td>
+<td style="text-align:left">1.000000</td>
+<td style="text-align:left">2.000000</td>
+<td style="text-align:left">440.000000</td>
+<td style="text-align:left">126.000000</td>
+<td style="text-align:left">1970.000000</td>
+<td style="text-align:left">-37.802355</td>
+<td style="text-align:left">145.000100</td>
+<td>6555.000000</td>
+</tr>
+<tr>
+<td style="text-align:left">75%</td>
+<td style="text-align:left">3.000000</td>
+<td style="text-align:left">1.330000e+06</td>
+<td style="text-align:left">13.000000</td>
+<td style="text-align:left">3148.000000</td>
+<td style="text-align:left">3.000000</td>
+<td style="text-align:left">2.000000</td>
+<td style="text-align:left">2.000000</td>
+<td style="text-align:left">651.000000</td>
+<td style="text-align:left">174.000000</td>
+<td style="text-align:left">1999.000000</td>
+<td style="text-align:left">-37.756400</td>
+<td style="text-align:left">145.058305</td>
+<td>10331.000000</td>
+</tr>
+<tr>
+<td style="text-align:left">max</td>
+<td style="text-align:left">10.000000</td>
+<td style="text-align:left">9.000000e+06</td>
+<td style="text-align:left">48.100000</td>
+<td style="text-align:left">3977.000000</td>
+<td style="text-align:left">20.000000</td>
+<td style="text-align:left">8.000000</td>
+<td style="text-align:left">10.000000</td>
+<td style="text-align:left">433014.000000</td>
+<td style="text-align:left">44515.000000</td>
+<td style="text-align:left">2018.000000</td>
+<td style="text-align:left">-37.408530</td>
+<td style="text-align:left">145.526350</td>
+<td>21650.000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Interpreting-Data-Description">Interpreting Data Description</h3>
+<p>The results show 8 numbers for each column in your original dataset. The first number, the <strong>count</strong>, shows how many rows have non-missing values.</p>
+<p>Missing values arise for many reasons. For example, the size of the 2nd bedroom wouldn’t be collected when surveying a 1 bedroom house. We’ll come back to the topic of missing data.</p>
+<p>The second value is the <strong>mean</strong>, which is the average. Under that, <strong>std</strong> is the standard deviation, which measures how numerically spread out the values are.</p>
+<p>To interpret the <strong>min</strong>, <strong>25%</strong>, <strong>50%</strong>, <strong>75%</strong> and <strong>max</strong> values, imagine sorting each column from lowest to highest value. The first (smallest) value is the min. If you go a quarter way through the list, you’ll find a number that is bigger than 25% of the values and smaller than 75% of the values. That is the <strong>25%</strong> value (pronounced “25th percentile”). The 50th and 75th percentiles are defined analogously, and the <strong>max</strong> is the largest number.</p>
+<h2 id="3-Your-First-Machine-Learning-Model">3. Your First Machine Learning Model</h2>
+<h3 id="Selecting-Data-for-Modeling">Selecting Data for Modeling</h3>
+<p>To choose variables/columns, we’ll need to see a list of all columns in the dataset. That is done with the <strong>columns</strong> property of the DataFrame (the bottom line of code below).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">melbourne_file_path = <span class="string">&#x27;../input/melbourne-housing-snapshot/melb_data.csv&#x27;</span></span><br><span class="line">melbourne_data = pd.read_csv(melbourne_file_path) </span><br><span class="line">melbourne_data.columns</span><br><span class="line"></span><br><span class="line"><span class="comment"># dropna drops missing values (think of na as &quot;not available&quot;)</span></span><br><span class="line">melbourne_data = melbourne_data.dropna(axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="Selecting-The-Prediction-Target">Selecting The Prediction Target</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = melbourne_data.Price</span><br></pre></td></tr></table></figure>
+<h3 id="Choosing-“Features”">Choosing “Features”</h3>
+<p>We select multiple features by providing a list of column names inside brackets. Each item in that list should be a string (with quotes).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">melbourne_features = [&#x27;Rooms&#x27;, &#x27;Bathroom&#x27;, &#x27;Landsize&#x27;, &#x27;Lattitude&#x27;, &#x27;Longtitude&#x27;]</span><br></pre></td></tr></table></figure>
+<p>By convention, this data is called <strong>X</strong>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X = melbourne_data[melbourne_features]</span><br></pre></td></tr></table></figure>
+<p>Let’s quickly review the data we’ll be using to predict house prices using  the <code>head</code> method, which shows the top few rows.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.head()</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Rooms</th>
+<th style="text-align:left">Bathroom</th>
+<th style="text-align:left">Landsize</th>
+<th style="text-align:left">Lattitude</th>
+<th style="text-align:left">Longtitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">1.0</td>
+<td style="text-align:left">156.0</td>
+<td style="text-align:left">-37.8079</td>
+<td style="text-align:left">144.9934</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">2.0</td>
+<td style="text-align:left">134.0</td>
+<td style="text-align:left">-37.8093</td>
+<td style="text-align:left">144.9944</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">1.0</td>
+<td style="text-align:left">120.0</td>
+<td style="text-align:left">-37.8072</td>
+<td style="text-align:left">144.9941</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">2.0</td>
+<td style="text-align:left">245.0</td>
+<td style="text-align:left">-37.8024</td>
+<td style="text-align:left">144.9993</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">1.0</td>
+<td style="text-align:left">256.0</td>
+<td style="text-align:left">-37.8060</td>
+<td style="text-align:left">144.9954</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Building-Your-Model">Building Your Model</h3>
+<p>Use the scikit-learn library to create your models. Scikit-learn is easily the most popular library for modeling the types of data typically stored in DataFrames.</p>
+<p>The steps to building and using a model are:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Define:</strong> What type of model will it be? A decision tree? Some other type of model? Some other parameters of the model type are specified too.</p>
+</li>
+<li class="lvl-2">
+<p><strong>Fit:</strong> Capture patterns from provided data. This is the heart of modeling.</p>
+</li>
+<li class="lvl-2">
+<p><strong>Predict:</strong> Just what it sounds like</p>
+</li>
+<li class="lvl-2">
+<p><strong>Evaluate</strong>: Determine how accurate the model’s predictions are.</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define model. Specify a number for random_state to ensure same results each run</span></span><br><span class="line">melbourne_model = DecisionTreeRegressor(random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit model</span></span><br><span class="line">melbourne_model.fit(X, y)</span><br><span class="line"></span><br><span class="line">melbourne_model.predict(X.head())</span><br></pre></td></tr></table></figure>
+<p>Many machine learning models allow some randomness in model training. Specifying a number for <code>random_state</code> ensures you get the same results in each run. This is considered a good practice. You use any number, and model quality won’t depend meaningfully on exactly what value you choose.</p>
+<h2 id="4-Model-Validation">4. Model Validation</h2>
+<h3 id="What-is-Model-Validation">What is Model Validation</h3>
+<p>There are many metrics for summarizing model quality, but we’ll start with one called <strong>Mean Absolute Error</strong> (also called <strong>MAE</strong>). Let’s break down this metric starting with the last word, error.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error=actual−predicted</span><br></pre></td></tr></table></figure>
+<p>Once we have a model, here is how we calculate the mean absolute error:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"></span><br><span class="line">predicted_home_prices = melbourne_model.predict(X)</span><br><span class="line">mean_absolute_error(y, predicted_home_prices)</span><br></pre></td></tr></table></figure>
+<h3 id="The-Problem-with-“In-Sample”-Scores">The Problem with “In-Sample” Scores</h3>
+<p>Since models’ practical value come from making predictions on new data, we measure performance on data that wasn’t used to build the model. The most straightforward way to do this is to exclude some data from the model-building process, and then use those to test the model’s accuracy on data it hasn’t seen before. This data is called <strong>validation data</strong>.</p>
+<p>The scikit-learn library has a function <code>train_test_split</code> to break up the data into two pieces. We’ll use some of that data as training data to fit the model, and we’ll use the other data as validation data to calculate <code>mean_absolute_error</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># split data into training and validation data, for both features and target</span></span><br><span class="line"><span class="comment"># The split is based on a random number generator. Supplying a numeric value to</span></span><br><span class="line"><span class="comment"># the random_state argument guarantees we get the same split every time we</span></span><br><span class="line"><span class="comment"># run this script.</span></span><br><span class="line">train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = <span class="number">0</span>)</span><br><span class="line"><span class="comment"># Define model</span></span><br><span class="line">melbourne_model = DecisionTreeRegressor()</span><br><span class="line"><span class="comment"># Fit model</span></span><br><span class="line">melbourne_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># get predicted prices on validation data</span></span><br><span class="line">val_predictions = melbourne_model.predict(val_X)</span><br><span class="line"><span class="built_in">print</span>(mean_absolute_error(val_y, val_predictions))</span><br></pre></td></tr></table></figure>
+<h2 id="Underfitting-and-Overfitting">Underfitting and Overfitting</h2>
+<h3 id="Experimenting-With-Different-Models">Experimenting With Different Models</h3>
+<p><img src="http://i.imgur.com/AXSEOfI.png" alt="underfitting_overfitting"></p>
+<h3 id="Example">Example</h3>
+<p>There are a few alternatives for controlling the tree depth, and many allow for some routes through the tree to have greater depth than other routes. But the <em>max_leaf_nodes</em> argument provides a very sensible way to control overfitting vs underfitting. The more leaves we allow the model to make, the more we move from the underfitting area in the above graph to the overfitting area.</p>
+<p>We can use a utility function to help compare MAE scores from different values for <em>max_leaf_nodes</em>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_mae</span>(<span class="params">max_leaf_nodes, train_X, val_X, train_y, val_y</span>):</span><br><span class="line">    model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=<span class="number">0</span>)</span><br><span class="line">    model.fit(train_X, train_y)</span><br><span class="line">    preds_val = model.predict(val_X)</span><br><span class="line">    mae = mean_absolute_error(val_y, preds_val)</span><br><span class="line">    <span class="keyword">return</span>(mae)</span><br></pre></td></tr></table></figure>
+<p>We can use a for-loop to compare the accuracy of models built with different values for <em>max_leaf_nodes.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># compare MAE with differing values of max_leaf_nodes</span></span><br><span class="line"><span class="keyword">for</span> max_leaf_nodes <span class="keyword">in</span> [<span class="number">5</span>, <span class="number">50</span>, <span class="number">500</span>, <span class="number">5000</span>]:</span><br><span class="line">    my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Max leaf nodes: %d  \t\t Mean Absolute Error:  %d&quot;</span> %(max_leaf_nodes, my_mae))</span><br></pre></td></tr></table></figure>
+<h3 id="Conclusion">Conclusion</h3>
+<p>Here’s the takeaway: Models can suffer from either:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Overfitting:</strong> capturing spurious patterns that won’t recur in the future, leading to less accurate predictions, or</p>
+</li>
+<li class="lvl-2">
+<p><strong>Underfitting:</strong> failing to capture relevant patterns, again leading to less accurate predictions.</p>
+</li>
+</ul>
+<p>We use <strong>validation</strong> data, which isn’t used in model training, to measure a candidate model’s accuracy. This lets us try many candidate models and keep the best one.</p>
+<h2 id="6-Random-Forests">6. Random Forests</h2>
+<p>Even today’s most sophisticated modeling techniques face this tension between underfitting and overfitting. But, many models have clever ideas that can lead to better performance. We’ll look at the <strong>random forest</strong> as an example.</p>
+<p>The random forest uses many trees, and it makes a prediction by averaging the predictions of each component tree. It generally has much better predictive accuracy than a single decision tree and it works well with default parameters. If you keep modeling, you can learn more models with even better performance, but many of those are sensitive to getting the right parameters.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"></span><br><span class="line">forest_model = RandomForestRegressor(random_state=<span class="number">1</span>)</span><br><span class="line">forest_model.fit(train_X, train_y)</span><br><span class="line">melb_preds = forest_model.predict(val_X)</span><br><span class="line"><span class="built_in">print</span>(mean_absolute_error(val_y, melb_preds))</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"># ML</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/29/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/01/02/Introduction-to-LATEX-part-1/" rel="next" title="Introduction to LATEX(part 1)">
+                  Introduction to LATEX(part 1) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MurphyUU</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

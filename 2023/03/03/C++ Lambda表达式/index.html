@@ -19,26 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"murphyuu.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="&quot;Welcome to MurphyUU&#39;s Blog&quot;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MurphyUU&#39;s Blog">
-<meta property="og:url" content="https://murphyuu.github.io/categories/Overleaf/index.html">
+    <meta name="description" content="C++ Lambda表达式 示例 ISO C++标准官网展示了一个简单的Lambda表示式实例： 1234567891011#include &lt;algorithm&gt;#include &lt;cmath&gt;void abssort(float* x, unsigned n) &amp;#123;    std::sort(x, x + n,        &#x2F;&#x2F; Lambda expressi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ Lambda表达式">
+<meta property="og:url" content="https://murphyuu.github.io/2023/03/03/C++%20Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="MurphyUU&#39;s Blog">
-<meta property="og:description" content="&quot;Welcome to MurphyUU&#39;s Blog&quot;">
+<meta property="og:description" content="C++ Lambda表达式 示例 ISO C++标准官网展示了一个简单的Lambda表示式实例： 1234567891011#include &lt;algorithm&gt;#include &lt;cmath&gt;void abssort(float* x, unsigned n) &amp;#123;    std::sort(x, x + n,        &#x2F;&#x2F; Lambda expressi">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-02T16:12:54.000Z">
+<meta property="article:modified_time" content="2023-03-02T16:15:39.610Z">
 <meta property="article:author" content="MurphyUU">
-<meta property="article:tag" content="math, cs">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="Syntax">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://murphyuu.github.io/categories/Overleaf/">
+<link rel="canonical" href="https://murphyuu.github.io/2023/03/03/C++%20Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/Overleaf/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://murphyuu.github.io/2023/03/03/C++%20Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/","path":"2023/03/03/C++ Lambda表达式/","title":"C++ Lambda表达式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: Overleaf | MurphyUU's Blog</title>
+<title>C++ Lambda表达式 | MurphyUU's Blog</title>
   
 
 
@@ -127,7 +130,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -140,6 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">C++ Lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">定义</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -192,50 +196,153 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">Overleaf
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://murphyuu.github.io/2023/03/03/C++%20Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MurphyUU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MurphyUU's Blog">
+      <meta itemprop="description" content="<font color="#FFFFFF">"Welcome to MurphyUU's Blog"</font>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C++ Lambda表达式 | MurphyUU's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++ Lambda表达式
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-03-03 00:12:54 / 修改时间：00:15:39" itemprop="dateCreated datePublished" datetime="2023-03-03T00:12:54+08:00">2023-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>C++ Lambda表达式</h1>
+<h2 id="示例">示例</h2>
+<p>ISO C++标准官网展示了一个简单的Lambda表示式实例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">abssort</span><span class="params">(<span class="type">float</span>* x, <span class="type">unsigned</span> n)</span> </span>&#123;</span><br><span class="line">    std::<span class="built_in">sort</span>(x, x + n,</span><br><span class="line">        <span class="comment">// Lambda expression begins</span></span><br><span class="line">        [](<span class="type">float</span> a, <span class="type">float</span> b) &#123;</span><br><span class="line">            <span class="built_in">return</span> (std::<span class="built_in">abs</span>(a) &lt; std::<span class="built_in">abs</span>(b));</span><br><span class="line">        &#125; <span class="comment">// end of lambda expression</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的实例中<code>std::sort</code>函数第三个参数应该是传递一个排序规则的函数，但是这个实例中直接将排序函数的实现写在应该传递函数的位置，省去了定义排序函数的过程，对于这种不需要复用，且短小的函数，直接传递函数体可以增加代码的可读性。</p>
+<h2 id="定义">定义</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[capture list] (parameters) mutable throw() -&gt; return-type &#123; statement &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li class="lvl-3">
+<p>capture list：描述Lambda表达式可访问的变量</p>
+<ul class="lvl-2">
+<li class="lvl-5"><code>[]</code>：不捕获任何变量</li>
+<li class="lvl-5"><code>[=]</code>：按值捕获变量</li>
+<li class="lvl-5"><code>[&amp;]</code>：按引用捕获变量</li>
+<li class="lvl-5"><code>[this]</code>：捕获this</li>
+<li class="lvl-5"><strong>不允许变量的重复传递，如<code>[=,x]</code></strong></li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>parameters：表示Lambda的参数</p>
+</li>
+<li class="lvl-3">
+<p>mutable：默认情况下Lambda函数总是一个const函数，mutable可以取消其常量性。在使用该修饰符时，参数列表不可省略（即使参数为空）</p>
+</li>
+<li class="lvl-3">
+<p>throw：使用throw() 异常规范来指示 Lambda 表达式不会引发任何异常</p>
+</li>
+<li class="lvl-3">
+<p>如果Lambda主体仅包含一个return语句或该表达式未返回值，则可以省略Lambda表达式的return-type部分，编译器将从return表达式的类型中推断出return类型</p>
+</li>
+<li class="lvl-3">
+<p>statement：可访问以下变量</p>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p>捕获变量</p>
+</li>
+<li class="lvl-5">
+<p>形参变量</p>
+</li>
+<li class="lvl-5">
+<p>局部声明变量</p>
+</li>
+<li class="lvl-5">
+<p>具有静态存储持续时间的任何变量</p>
+</li>
+<li class="lvl-5">
+<p>类数据成员，当在类内声明this并被捕获时</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Lambda表达式也可以指定名称</strong></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-01-02T13:14:22+08:00"
-              content="2023-01-02">
-          01-02
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/01/02/Introduction-to-LATEX-part-1/" itemprop="url">
-            <span itemprop="name">Introduction to LATEX(part 1)</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/Syntax/" rel="tag"># Syntax</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/23/%E5%85%AC%E5%B9%B3%E7%BB%84%E5%90%88%E6%B8%B8%E6%88%8F/" rel="prev" title="公平组合游戏">
+                  <i class="fa fa-chevron-left"></i> 公平组合游戏
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>

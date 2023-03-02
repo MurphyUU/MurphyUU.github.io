@@ -575,4 +575,68 @@ The point at the bottom where we make a prediction is called a <strong>leaf</str
         <tag>Game Theory</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C++ Lambda表达式</title>
+    <url>/2023/03/03/C++%20Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h1>C++ Lambda表达式</h1>
+<h2 id="示例">示例</h2>
+<p>ISO C++标准官网展示了一个简单的Lambda表示式实例：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">abssort</span><span class="params">(<span class="type">float</span>* x, <span class="type">unsigned</span> n)</span> </span>&#123;</span><br><span class="line">    std::<span class="built_in">sort</span>(x, x + n,</span><br><span class="line">        <span class="comment">// Lambda expression begins</span></span><br><span class="line">        [](<span class="type">float</span> a, <span class="type">float</span> b) &#123;</span><br><span class="line">            <span class="built_in">return</span> (std::<span class="built_in">abs</span>(a) &lt; std::<span class="built_in">abs</span>(b));</span><br><span class="line">        &#125; <span class="comment">// end of lambda expression</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的实例中<code>std::sort</code>函数第三个参数应该是传递一个排序规则的函数，但是这个实例中直接将排序函数的实现写在应该传递函数的位置，省去了定义排序函数的过程，对于这种不需要复用，且短小的函数，直接传递函数体可以增加代码的可读性。</p>
+<h2 id="定义">定义</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[capture list] (parameters) mutable throw() -&gt; return-type &#123; statement &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li class="lvl-3">
+<p>capture list：描述Lambda表达式可访问的变量</p>
+<ul class="lvl-2">
+<li class="lvl-5"><code>[]</code>：不捕获任何变量</li>
+<li class="lvl-5"><code>[=]</code>：按值捕获变量</li>
+<li class="lvl-5"><code>[&amp;]</code>：按引用捕获变量</li>
+<li class="lvl-5"><code>[this]</code>：捕获this</li>
+<li class="lvl-5"><strong>不允许变量的重复传递，如<code>[=,x]</code></strong></li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>parameters：表示Lambda的参数</p>
+</li>
+<li class="lvl-3">
+<p>mutable：默认情况下Lambda函数总是一个const函数，mutable可以取消其常量性。在使用该修饰符时，参数列表不可省略（即使参数为空）</p>
+</li>
+<li class="lvl-3">
+<p>throw：使用throw() 异常规范来指示 Lambda 表达式不会引发任何异常</p>
+</li>
+<li class="lvl-3">
+<p>如果Lambda主体仅包含一个return语句或该表达式未返回值，则可以省略Lambda表达式的return-type部分，编译器将从return表达式的类型中推断出return类型</p>
+</li>
+<li class="lvl-3">
+<p>statement：可访问以下变量</p>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p>捕获变量</p>
+</li>
+<li class="lvl-5">
+<p>形参变量</p>
+</li>
+<li class="lvl-5">
+<p>局部声明变量</p>
+</li>
+<li class="lvl-5">
+<p>具有静态存储持续时间的任何变量</p>
+</li>
+<li class="lvl-5">
+<p>类数据成员，当在类内声明this并被捕获时</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Lambda表达式也可以指定名称</strong></p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>Syntax</tag>
+      </tags>
+  </entry>
 </search>
